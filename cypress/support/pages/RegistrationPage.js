@@ -46,10 +46,9 @@ class RegistrationPage {
 
     chooseOptionFromQuestionDropdown(){
         cy.log('Choose random option from question dropdown');
-
         this.getQuestionDropdown().click();
         cy.get('[role="listbox"] mat-option').then(options => {
-            const randomInt = faker.datatype.number(options.length);
+            const randomInt = faker.datatype.number(options.length - 1);
             for(let i=0; i < options.length; i++){
                 if(i === randomInt){
                     cy.get(`#mat-option-${i}`).click();
@@ -57,33 +56,6 @@ class RegistrationPage {
             }
         })
     }
-
-
-
-
-
-    // chooseOptionFromQuestionDropdown(){
-    //     cy.log('Choose random option from question dropdown');
-
-    //     this.getQuestionDropdown().click();
-    //     cy.get('[role="listbox"] mat-option').then(options => {
-
-    
-    //         const length = 3 + options.length;
-    //         const randomInt = faker.datatype.number({min: 3, max: length});
-    //         for(let i=0; i <= length; i++){
-    //             if(i === randomInt){
-    //                 cy.get(`#mat-option-${i}`).click();
-    //             }
-    //         }
-    //     })
-    // }
-
-
-
-
-
-
     
     setAnswer(answer){
         cy.log(`Set ${answer} into Answer field`);
@@ -104,8 +76,27 @@ class RegistrationPage {
         this.setConfirmPassword(password);
         this.chooseOptionFromQuestionDropdown();
         this.setAnswer(answer);
-        //this.clickRegisterButton();
+        this.clickRegisterButton();
     }
+
+
+
+
+    
+
+    getSuccessNotificationContainer(){
+        return cy.get('.mat-snack-bar-container');
+    }
+
+    getSuccessNotificationText(){
+        return cy.get('.mat-simple-snack-bar-content');
+    }
+
+
+
+    
+
+
 
 }
 
