@@ -3,13 +3,14 @@ import header from "../support/pages/Header";
 import loginPage from "../support/pages/LoginPage";
 import user from '../fixtures/loginUser.json';
 
-it('Login', () => {
-
+before(() => {
     cy.log('Set cookie to close Welcome container');
     cy.setCookie('welcomebanner_status', 'dismiss');
 
     cy.visit('#/login');
+});
 
+it('Login', () => {
     loginPage.login(user.email, user.password);
 
     cy.log('Check if products page open after login');
@@ -20,5 +21,4 @@ it('Login', () => {
     header.getAccountMenuItem().should('contain', user.email);
     header.getLogoutMenuItem().should('exist');
     header.getYourBasketButton().should('exist');
-
 });

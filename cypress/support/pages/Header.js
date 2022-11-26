@@ -4,6 +4,14 @@ class Header {
         return cy.get('#navbarAccount');
     }
 
+    clickAccountIcon(){
+        this.getAccountIcon().click();
+    }
+
+    getYourBasketButton(){
+        return cy.get('[routerlink="/basket"]');
+    }
+
     // getLoginButton(){
     //     return cy.get('#navbarLoginButton');
     // }
@@ -12,22 +20,25 @@ class Header {
     //     this.getLoginButton().click();
     // }
 
+
+
+    //------Account menu items------
     getAccountMenuItem(){
         return cy.get('[aria-label="Go to user profile"]');
     }
+
+    // getOrdersAndPaymentMenuItem(){
+    // return cy.get('[aria-label="Show Privacy and Security Menu"]');
+    // }
+
+    // clickOrdersAndPaymentMenuItem(){
+    //     this.getOrdersAndPaymentMenuItem().click();
+    // }
 
     getLogoutMenuItem(){
         return cy.get('#navbarLogoutButton');
     }
 
-    getYourBasketButton(){
-        return cy.get('[routerlink="/basket"]');
-    }
-
-    clickAccountIcon(){
-        this.getAccountIcon().click();
-    }
-
-}
+ }
 
 export default new Header();

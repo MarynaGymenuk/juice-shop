@@ -74,13 +74,6 @@ class RegistrationPage {
         this.clickRegisterButton();
     }
 
-
-    //------After registration success notification------
-    getSuccessNotificationText(){
-        cy.log('Get success notification after registration');
-        return cy.get('.mat-simple-snack-bar-content');
-    }
-
 }
 
 export default new RegistrationPage();

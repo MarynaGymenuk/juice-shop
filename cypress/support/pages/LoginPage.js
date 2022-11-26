@@ -20,6 +20,8 @@ class LoginPage {
         return cy.get('#loginButton');
     }
 
+
+    //------Login------
     login(email, password){
         cy.log('Login');
         this.setEmail(email);
