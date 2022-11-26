@@ -4,16 +4,28 @@ class Header {
         return cy.get('#navbarAccount');
     }
 
-    getLoginButton(){
-        return cy.get('#navbarLoginButton');
-    }
+    // getLoginButton(){
+    //     return cy.get('#navbarLoginButton');
+    // }
     
-    clickAccountIcon(){
-        this.getAccountIcon().click();
+    // clickLoginButton(){
+    //     this.getLoginButton().click();
+    // }
+
+    getAccountMenuItem(){
+        return cy.get('[aria-label="Go to user profile"]');
     }
 
-    clickLoginButton(){
-        this.getLoginButton().click();
+    getLogoutMenuItem(){
+        return cy.get('#navbarLogoutButton');
+    }
+
+    getYourBasketButton(){
+        return cy.get('[routerlink="/basket"]');
+    }
+
+    clickAccountIcon(){
+        this.getAccountIcon().click();
     }
 
 }

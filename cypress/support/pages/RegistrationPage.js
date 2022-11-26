@@ -30,17 +30,14 @@ class RegistrationPage {
     
     //------Set fields------
     setEmail(email){
-        cy.log(`Set ${email} into Email field`);
         this.getEmailInput().type(email);
     }
 
     setPassword(password){
-        cy.log(`Set ${password} into Password field`);
         this.getPasswordInput().type(password);
     }
 
     setConfirmPassword(password){
-        cy.log(`Set ${password} into Confirm Password field`);
         this.getConfirmPasswordInput().type(password);
     }
 
@@ -58,7 +55,6 @@ class RegistrationPage {
     }
     
     setAnswer(answer){
-        cy.log(`Set ${answer} into Answer field`);
         this.getAnswerInput().type(answer);
     }
 
@@ -70,7 +66,6 @@ class RegistrationPage {
     //------Register new user------
     register(email, password, answer){
         cy.log('Register new user');
-
         this.setEmail(email);
         this.setPassword(password);
         this.setConfirmPassword(password);
@@ -82,6 +77,7 @@ class RegistrationPage {
 
     //------After registration success notification------
     getSuccessNotificationText(){
+        cy.log('Get success notification after registration');
         return cy.get('.mat-simple-snack-bar-content');
     }
 

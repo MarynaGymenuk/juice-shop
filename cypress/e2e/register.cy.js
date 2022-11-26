@@ -4,11 +4,14 @@ import {user} from "../support/user";
 
 it('Register new user', () => {
 
+    cy.log('Set cookie to close Welcome container');
     cy.setCookie('welcomebanner_status', 'dismiss');
+
     cy.visit('#/register');
 
     registrationPage.register(user.email, user.password, user.answer);
     
+    cy.log('Check if login page open after registration');
     cy.location('hash').should('eq', '#/login');
 
     registrationPage.getSuccessNotificationText().then(notification => {
@@ -16,15 +19,3 @@ it('Register new user', () => {
     });
 
 });
-
-
-
-
-
-
-
-
-
-
-
-
