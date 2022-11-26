@@ -80,23 +80,10 @@ class RegistrationPage {
     }
 
 
-
-
-    
-
-    getSuccessNotificationContainer(){
-        return cy.get('.mat-snack-bar-container');
-    }
-
+    //------After registration success notification------
     getSuccessNotificationText(){
         return cy.get('.mat-simple-snack-bar-content');
     }
-
-
-
-    
-
-
 
 }
 

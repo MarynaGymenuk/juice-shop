@@ -1,8 +1,6 @@
 ///<reference types="cypress"/>
-
 import registrationPage from "../support/pages/RegistrationPage";
 import {user} from "../support/user";
-
 
 it('Register new user', () => {
 
@@ -10,21 +8,12 @@ it('Register new user', () => {
     cy.visit('#/register');
 
     registrationPage.register(user.email, user.password, user.answer);
-
-
-
-
     
-    // registrationPage.getSuccessNotificationContainer().then(notification => {
-    //     registrationPage.getSuccessNotificationText().should('contain', 'Registration completed successfully. You can now log in.');
-    // });
+    cy.location('hash').should('eq', '#/login');
 
-
-    
-    registrationPage.getSuccessNotificationText().should('contain', 'Registration completed successfully. You can now log in.');
-
-
-
+    registrationPage.getSuccessNotificationText().then(notification => {
+        expect(notification).to.contain('Registration completed successfully. You can now log in.');
+    });
 
 });
 
