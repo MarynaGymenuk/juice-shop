@@ -1,6 +1,7 @@
 import {faker} from '@faker-js/faker';
+import Helper from '../helper';
 
-class RegistrationPage {
+class RegistrationPage extends Helper {
 
     //------Get fields------
     getEmailInput(){

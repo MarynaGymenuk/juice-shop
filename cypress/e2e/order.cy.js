@@ -3,7 +3,8 @@ import loginPage from "../support/pages/LoginPage";
 import user from '../fixtures/loginUser.json';
 import addNewAddress from "../support/pages/AddNewAddressPage";
 import {address} from "../support/address";
-import helper from "../support/helper";
+import paymentOptions from "../support/pages/PaymentOptionsPage";
+import {faker} from '@faker-js/faker';
 
 it('Order', () => {
 
@@ -22,11 +23,23 @@ it('Order', () => {
     cy.wait(1000);
    
     cy.log('Check success notification text');
-    helper.getSuccessNotificationText().then(notification => {
+    paymentOptions.getSuccessNotificationText().then(notification => {
         expect(notification).to.contain(`The address at ${address.city} has been successfully added to your addresses.`);
     });
 
- 
+   
+   
+   
+    //card
+
+    let name = faker.name.fullName();
+    let cardNumber = faker.phone.number('###########');
+
+    cy.visit('#/saved-payment-methods');
+    paymentOptions.expandAddNewCardSection();
+
+    paymentOptions.addNewCard(name, cardNumber);
+
    
    
 

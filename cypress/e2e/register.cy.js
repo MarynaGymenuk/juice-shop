@@ -1,7 +1,6 @@
 ///<reference types="cypress"/>
 import registrationPage from "../support/pages/RegistrationPage";
 import {user} from "../support/user";
-import helper from "../support/helper";
 
 before(() => {
     cy.log('Set cookie to close Welcome container');
@@ -17,7 +16,7 @@ it('Register new user', () => {
     cy.location('hash').should('eq', '#/login');
 
     cy.log('Check success notification text');
-    helper.getSuccessNotificationText().then(notification => {
+    registrationPage.getSuccessNotificationText().then(notification => {
         expect(notification).to.contain('Registration completed successfully. You can now log in.');
     });
 });
