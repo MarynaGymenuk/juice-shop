@@ -65,13 +65,13 @@ class RegistrationPage extends Helper {
 
 
     //------Register new user------
-    register(email, password, answer){
+    register(user){
         cy.log('Register new user');
-        this.setEmail(email);
-        this.setPassword(password);
-        this.setConfirmPassword(password);
+        this.setEmail(user.email);
+        this.setPassword(user.password);
+        this.setConfirmPassword(user.password);
         this.chooseOptionFromQuestionDropdown();
-        this.setAnswer(answer);
+        this.setAnswer(user.answer);
         this.clickRegisterButton();
     }
 

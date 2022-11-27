@@ -22,10 +22,10 @@ class LoginPage {
 
 
     //------Login------
-    login(email, password){
+    login(user){
         cy.log('Login');
-        this.setEmail(email);
-        this.setPassword(password);
+        this.setEmail(user.email);
+        this.setPassword(user.password);
         this.getLoginButton().click();
     }
 

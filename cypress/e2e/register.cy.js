@@ -10,7 +10,7 @@ before(() => {
 });
 
 it('Register new user', () => {
-     registrationPage.register(user.email, user.password, user.answer);
+     registrationPage.register(user);
     
     cy.log('Check if login page open after registration');
     cy.location('hash').should('eq', '#/login');

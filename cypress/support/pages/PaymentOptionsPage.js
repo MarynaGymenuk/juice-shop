@@ -3,29 +3,40 @@ import {faker} from '@faker-js/faker';
 
 class PaymentOptions extends Helper {
     
+    //------Get fields------
     expandAddNewCardSection(){
         cy.get('.mat-expansion-indicator').click();
     }
 
     getNameInput(){
-        return cy.get('#mat-input-1');
+        return cy.get('input[type="text"]:required');
     }
 
     getCardNumberInput(){
-        return cy.get('#mat-input-2');
+        return cy.get('input[type="number"]:required');
     }
 
     getExpiryMonthDropdown(){
-        return cy.get('#mat-input-3');
+        return cy.get('mat-form-field:nth-of-type(3) select');
     }
 
     getExpiryYearDropdown(){
-        return cy.get('#mat-input-4');
+        return cy.get('mat-form-field:nth-of-type(4) select');
     }
 
+    getCardNumber(){
+        return cy.get('mat-row .mat-column-Number');
+    }
 
+    getName(){
+        return cy.get('mat-row .mat-column-Name');
+    }
+    
+    getExpireDate(){
+        return cy.get('mat-row .mat-column-Expiry');
+    }
 
-
+    //------Set fields------
     setName(name){
         this.getNameInput().type(name);
     }
@@ -36,12 +47,11 @@ class PaymentOptions extends Helper {
 
     chooseExpiryMonth(){
         cy.log('Choose random option from Expiry Month dropdown');
-        this.getExpiryMonthDropdown().click();
-        cy.get('#mat-input-15 option[value]').then(values => {
-            const randomInt = faker.datatype.number({ min: 1, max: values.length});
-            for(let i=1; i <= values.length; i++){
-                if(i===randomInt){
-                    cy.get(`[value="${i}"`).click();
+        this.getExpiryMonthDropdown().children('option').then(options => {
+            const randomInt = faker.datatype.number({min:1, max:options.length});
+            for(let i=1; i <= options.length; i++){
+                if(i === randomInt){
+                    this.getExpiryMonthDropdown().select(`${i}`);
                 }
             }
         })
@@ -49,21 +59,16 @@ class PaymentOptions extends Helper {
 
     chooseExpiryYear(){
         cy.log('Choose random option from Expiry Year dropdown');
-        this.getExpiryYearDropdown().click();
-        cy.get('#mat-input-16 option[value]').then(values => {
-            const randomInt = faker.datatype.number({ min: 2080, max: 2099});
+        this.getExpiryYearDropdown().children('option').then(() => {
+            const randomInt = faker.datatype.number({min:2080, max:2099});
             for(let i=2080; i <= 2099; i++){
                 if(i===randomInt){
-                    cy.get(`[value="${i}"`).click();
+                   this.getExpiryYearDropdown().select(`${i}`);   
                 }
             }
         })
     }
-
-
-
-
-
+    
     addNewCard(name, cardNumber){
         cy.log('Add New Card');
         this.setName(name);
