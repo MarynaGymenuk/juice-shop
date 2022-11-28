@@ -1,4 +1,6 @@
-class AddNewAddress {
+import Helper from '../helper';
+
+class AddressPage extends Helper {
     
     getAddNewAddressButton(){
         return cy.get('[aria-label="Add a new address"] .mat-button-wrapper');
@@ -88,4 +90,4 @@ class AddNewAddress {
 
 }
 
-export default new AddNewAddress();
+export default new AddressPage();

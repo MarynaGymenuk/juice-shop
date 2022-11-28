@@ -1,34 +1,110 @@
 export default class Helper {
 
-    getSuccessNotificationText(){
+    getSuccessNotificationText() {
         return cy.get('.mat-simple-snack-bar-content');
     }
 
-    clickSubmitButton(){
+    clickSubmitButton() {
         cy.get('#submitButton').click();
     }
 
-    getProductName(){
-        return cy.get('.item-name');
+    clickContinueButton(){
+        cy.get('button').contains('Continue').click();
     }
 
-    addProductToBasket(productName){
-        this.getProductName().then(products => {
-            for(let i=0; i <= products.length; i++){
-                if(this.getProductName === productName){
-                    this.getProductName()
-                    .closest('[aria-label="Add to Basket"]')
-                    .click();
-                }
-                else {
-                    cy.get('[aria-label="Next page"]').click();
-                    this.addProductToBasket();
-                }
-            }
-
-
-        })
+    getRadioButton(){
+        return cy.get('mat-radio-button');
     }
+
+
+    //---to change
+    addProductToBasket(productName) {
+        cy.log(`**Add ${productName} in basket**`);
+        cy.contains('mat-card', ` ${productName} `).find('[aria-label="Add to Basket"]').click();
+        cy.wait(500);
+    }
+
+
+
+
+
+
+
+
+
+    // getProductName(index) {
+    //     return cy.get(`mat-grid-list>div>mat-grid-tile:nth-child(${index})>div>mat-card>div>div:last-child>div`);
+    // }
+
+    // getAddToBasketButton(index) {
+    //     return cy.get(`mat-grid-list>div>mat-grid-tile:nth-child(${index})>div>mat-card>div:last-child>button`)
+    // }
+
+    // addProductToBasket(productName) {
+    //     cy.get('mat-card').then((matCard) => {
+    //         if (matCard.find(`${productName}`)) {
+    //             cy.contains('mat-card', `${productName}`).find('[aria-label="Add to Basket"]').click()
+    //             return
+    //         } else {
+    //             cy.get('[aria-label="Next page"]').click().then(() => {
+    //                 this.addProductToBasket(productName);
+    //             })
+    //         }
+    //     })
+    // }
+
+    // addProductToBasket2(productName) {
+    //     try {
+    //         cy.get('.item-name').contains(`${productName}`).find('[aria-label="Add to Basket"]').click()
+    //     } catch (e) {
+    //         cy.get('[aria-label="Next page"]').click();
+    //         this.addProductToBasket(productName);
+    //     }
+    // }
 
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // addProductToBasket(productName) {
+    //     this.getProductName().then(products => {
+    //         for (let i = 0; i <= products.length; i++) {
+    //             //let gg = this.getProductName().invoke('text');
+    //             //cy.log(gg);
+    //             if (this.getProductName().contains(productName)) {
+    //                 this.getProductName().contains(productName).find('[aria-label="Add to Basket"]').click();
+    //             }
+    //             else {
+    //                 cy.get('[aria-label="Next page"]').click();
+    //                 this.addProductToBasket(productName);
+    //             }
+    //         }
+
+
+    //     })
+    // }
+
+
+    // addProductToBasket(productName){
+    //     cy.get('body').then(body => {
+    //         if(body.find(this.getProductName().))
+
+
+
+    //     })
+    // }
+
+

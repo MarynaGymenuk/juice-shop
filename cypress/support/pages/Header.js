@@ -12,6 +12,14 @@ class Header {
         return cy.get('[routerlink="/basket"]');
     }
 
+    clickYourBasketButton(){
+        this.getYourBasketButton().click();
+    }
+
+    getYourBasketCounter(){
+        return cy.get('.fa-layers-counter');
+    }
+    
     // getLoginButton(){
     //     return cy.get('#navbarLoginButton');
     // }
