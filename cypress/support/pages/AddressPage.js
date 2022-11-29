@@ -10,7 +10,6 @@ class AddressPage extends Helper {
         this.getAddNewAddressButton().click();
     }
 
-
     //------Get fields------
     getCountryInput(){
         return cy.get('[placeholder*="country"]');
@@ -38,10 +37,6 @@ class AddressPage extends Helper {
 
     getStateInput(){
         return cy.get('[placeholder*="state"]');
-    }
-
-    getSubmitButton(){
-        return cy.get('#submitButton');
     }
 
 
@@ -85,7 +80,7 @@ class AddressPage extends Helper {
         this.setAddress(address.address);
         this.setCity(address.city);
         this.setState(address.state);
-        this.getSubmitButton().click();
+        this.clickSubmitButton();
     }
 
 }

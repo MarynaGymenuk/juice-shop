@@ -3,11 +3,11 @@ import {faker} from '@faker-js/faker';
 
 class PaymentOptions extends Helper {
     
-    //------Get fields------
     expandAddNewCardSection(){
         cy.get('.mat-expansion-indicator').click();
     }
 
+    //------Get fields------
     getNameInput(){
         return cy.get('input[type="text"]:required');
     }
@@ -35,6 +35,7 @@ class PaymentOptions extends Helper {
     getExpireDate(){
         return cy.get('mat-row .mat-column-Expiry');
     }
+
 
     //------Set fields------
     setName(name){
@@ -71,6 +72,8 @@ class PaymentOptions extends Helper {
         })
     }
     
+
+    //------Fill Add New Card form and submit------
     addNewCard(name, cardNumber){
         cy.log('Add New Card');
         this.setName(name);

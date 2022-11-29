@@ -29,18 +29,6 @@ class LoginPage {
         this.getLoginButton().click();
     }
 
-
-
-
-
-    // getNewCustomerLink(){
-    //     return cy.get('#newCustomerLink');
-    // }
-
-    // clickNewCustomerLink(){
-    //     this.getNewCustomerLink().click();
-    // }
-
 }
 
 export default new LoginPage();

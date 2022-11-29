@@ -2,6 +2,7 @@ import Helper from '../helper';
 
 class FeedbackPage extends Helper {
 
+    //------Get fields------
     getCommentInput(){
         return cy.get('#comment');
     }
@@ -22,6 +23,8 @@ class FeedbackPage extends Helper {
         return cy.get('#captchaControl');
     }
 
+
+    //------Set fields------
     fillCommentInput(phrase){
         this.getCommentInput().type(phrase);
     }
