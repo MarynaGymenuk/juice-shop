@@ -69,12 +69,17 @@ describe('Order', () => {
     });
     
     it('Make order', () => {
-        let productName = 'Apple Juice (1000ml)';
+        let productName = 'Raspberry Juice';
+        let fullProductName = 'Raspberry Juice (1000ml)';
 
         cy.visit('#/search');
         order.addProductToBasket(productName);
     
-        //add check on success notification
+        cy.wait(1000);
+        cy.log('Check success notification text');
+        order.getSuccessNotificationText().then(notification => {
+            expect(notification).to.contain(`Placed ${fullProductName} into basket`);
+        });
         
         cy.log('Check basket counter');
         header.getYourBasketCounter().should('contain', '1');
