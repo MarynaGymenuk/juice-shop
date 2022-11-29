@@ -17,10 +17,26 @@ export default class Helper {
     }
 
 
+//GOOD FUNC
+    // addProductToBasket(productName) {
+    //     cy.log(`Add ${productName} to basket`);
+    //     cy.get('body').then(body => {
+    //         if (body.find(`img.mat-card-image[alt='${productName}']`).length > 0) {
+    //             cy.contains('mat-card', `${productName}`).find('[aria-label="Add to Basket"]').click();
+    //         } else {
+    //             cy.get('[aria-label="Next page"]').click().then(() => {
+    //             this.addProductToBasket(productName);
+    //             })
+    //         }
+    //     })
+    // }
+
+
+
     //---to change
     addProductToBasket(productName) {
-        cy.log(`**Add ${productName} in basket**`);
-        cy.contains('mat-card', ` ${productName} `).find('[aria-label="Add to Basket"]').click();
+        cy.log(`Add ${productName} to basket`);
+        cy.contains('mat-card', `${productName}`).find('[aria-label="Add to Basket"]').click();
         cy.wait(500);
     }
 

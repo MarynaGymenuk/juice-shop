@@ -52,6 +52,7 @@ class PaymentOptions extends Helper {
             for(let i=1; i <= options.length; i++){
                 if(i === randomInt){
                     this.getExpiryMonthDropdown().select(`${i}`);
+                    return;
                 }
             }
         })
@@ -63,7 +64,8 @@ class PaymentOptions extends Helper {
             const randomInt = faker.datatype.number({min:2080, max:2099});
             for(let i=2080; i <= 2099; i++){
                 if(i===randomInt){
-                   this.getExpiryYearDropdown().select(`${i}`);   
+                   this.getExpiryYearDropdown().select(`${i}`);
+                   return;
                 }
             }
         })

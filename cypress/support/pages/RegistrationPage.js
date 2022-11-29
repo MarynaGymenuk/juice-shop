@@ -50,6 +50,7 @@ class RegistrationPage extends Helper {
             for(let i=0; i < options.length; i++){
                 if(i === randomInt){
                     cy.get(`#mat-option-${i}`).click();
+                    return;
                 }
             }
         })

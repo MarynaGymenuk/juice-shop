@@ -47,11 +47,11 @@ describe('Order', () => {
     });
     
     it('Add card to user', () => {
-        cy.wait(1000);
         let name = faker.name.fullName();
         let cardNumber = faker.random.numeric(16);
         let lastFourDigits = cardNumber.slice(12, 16);
-    
+        
+        cy.wait(1000);
         cy.visit('#/saved-payment-methods');
         paymentOptions.expandAddNewCardSection();
         
@@ -69,7 +69,7 @@ describe('Order', () => {
     });
     
     it('Make order', () => {
-        let productName = 'Apple Juice';
+        let productName = 'Apple Juice (1000ml)';
 
         cy.visit('#/search');
         order.addProductToBasket(productName);
@@ -81,26 +81,31 @@ describe('Order', () => {
     
         header.clickYourBasketButton();
     
-        cy.log('Check product name and quantity in basket');
-        order.getProductNameInBasket().should('contain', productName);
+        cy.log('Check product name in basket');
+        order.getProductName().should('contain', productName);
     
         order.clickCheckoutButton();
-
         cy.wait(1000);
+
+        cy.log('Select address');
         order.getRadioButton().should('exist');
         order.selectAddress();
         order.clickContinueButton();
 
         order.chooseRandomDeliverySpeed();
-
         order.clickContinueButton();
 
+        cy.log('Select card');
         order.selectCard();
         order.clickContinueButton();
         order.clickCheckoutButton();
 
+        cy.log('Check that product is ordered');
+        header.getYourBasketCounter().should('contain', '0');
         order.getOrderSuccessHeader().should('contain', 'Thank you for your purchase!');
-
+        order.getProductName().should('contain', productName);
+        order.getQuantityInOrderSummary().should('contain', '1');
+    
     });
 
 });
